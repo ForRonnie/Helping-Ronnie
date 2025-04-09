@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help Save Ronnie - Heartworm Treatment Fundraiser</title>
+    <title>The Ronnie Legacy: Saving Lives in Shelters Nationwide</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f9f9f9;
@@ -17,13 +17,26 @@
         
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
         h1 {
             color: #ca5310;
             margin-bottom: 10px;
-            font-size: 28px;
+            font-size: 32px;
+        }
+        
+        h2 {
+            color: #ca5310;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-top: 10px;
+        }
+        
+        h3 {
+            color: #ca5310;
+            margin-top: 15px;
+            margin-bottom: 10px;
         }
         
         .subtitle {
@@ -34,26 +47,19 @@
         
         .hero-image {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             border-radius: 10px;
             margin: 0 auto 20px;
             display: block;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        .story-section, .donation-section, .instructions-section {
+        .section {
             background-color: white;
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 30px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        h2 {
-            color: #ca5310;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-            margin-top: 0;
         }
         
         .success-note {
@@ -64,15 +70,39 @@
             font-size: 17px;
         }
         
-        .important-note {
-            background-color: #ffeaea;
-            border-left: 4px solid #ff5252;
+        .urgent-note {
+            background-color: #fff5e6;
+            border-left: 4px solid #f39c12;
             padding: 15px;
             margin: 15px 0;
             font-size: 17px;
         }
         
-        .donation-button {
+        .memorial-note {
+            background-color: #f9f1f1;
+            border-left: 4px solid #7f8c8d;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 17px;
+            font-style: italic;
+        }
+        
+        .donation-button, .action-button {
+            display: inline-block;
+            background-color: #ca5310;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .main-donation-button {
             display: block;
             background-color: #ca5310;
             color: white;
@@ -88,8 +118,17 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
-        .donation-button:hover {
+        .secondary-button {
+            background-color: #3498db;
+        }
+        
+        .donation-button:hover, .action-button:hover, .main-donation-button:hover {
             background-color: #a84100;
+            transform: translateY(-2px);
+        }
+        
+        .secondary-button:hover {
+            background-color: #2980b9;
         }
         
         .steps {
@@ -115,48 +154,168 @@
             font-size: 18px;
         }
         
-        .action-box {
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 25px;
-            margin-bottom: 25px;
+        .featured-dogs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 25px 0;
         }
         
-        .action-box h3 {
+        .dog-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .dog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .dog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .dog-info {
+            padding: 15px;
+        }
+        
+        .dog-name {
             color: #ca5310;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+        
+        .dog-days {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .shelters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .shelter-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .shelter-logo {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 15px;
+            display: block;
+        }
+        
+        .help-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .help-option {
+            flex: 1;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             text-align: center;
-            margin-top: 0;
+        }
+        
+        .help-icon {
+            font-size: 40px;
+            color: #ca5310;
             margin-bottom: 15px;
         }
         
-        .action-options {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
+        .memorial-section {
+            background-color: #f5f5f5;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
         }
         
-        .action-option {
+        .memorial-dogs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .memorial-dog {
             flex: 1;
-            min-width: 200px;
+            min-width: 250px;
+            max-width: 300px;
             padding: 15px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
-        .action-option h4 {
-            color: #ca5310;
-            margin-top: 0;
-            text-align: center;
+        .memorial-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 60px;
+            margin: 0 auto 15px;
+            display: block;
+            filter: grayscale(100%);
+            border: 3px solid #7f8c8d;
         }
         
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #666;
-            font-size: 14px;
+        .portrait-section {
+            background-color: #f8f4ea;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid #ca5310;
+        }
+        
+        .portrait-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 15px 0;
+            margin: 20px 0;
+        }
+        
+        .portrait-sample {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .portrait-sample:hover {
+            transform: scale(1.05);
         }
         
         .contact-info {
@@ -164,13 +323,6 @@
             border-radius: 8px;
             padding: 15px;
             margin-top: 20px;
-            border-left: 4px solid #ca5310;
-        }
-        
-        .contact-info h3 {
-            color: #ca5310;
-            margin-top: 0;
-            border-bottom: none;
         }
         
         .tax-info {
@@ -178,32 +330,61 @@
             margin-top: 20px;
         }
         
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
+        blockquote {
+            font-style: italic;
+            border-left: 3px solid #ca5310;
+            padding-left: 15px;
+            margin-left: 0;
+            color: #555;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .shelters, .help-options, .memorial-dogs, .featured-dogs {
+                flex-direction: column;
+            }
+            
+            .dog-card, .shelter-card, .help-option, .memorial-dog {
+                min-width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>The Ronnie Legacy: Be a Hero for Dogs Like Him</h1>
-        <img src="Ronnie.jpg" alt="Ronnie - Dogo Argentino" class="hero-image" />
+        <h1>The Ronnie Legacy: Saving Lives in Shelters Nationwide</h1>
+        <img src="Ronnie.jpg" alt="Ronnie - A beautiful Dogo Argentino with a loving spirit" class="hero-image" />
+        <p class="subtitle">One rescued dog can inspire a movement</p>
     </header>
     
-    <section class="donation-section">
-        <h2>Thanks to Heroes Like You, Ronnie's Treatment is Funded!</h2>
+    <section class="section">
+        <h2>Thanks to Heroes Like You, Ronnie's Treatment is Fully Funded!</h2>
         
         <div class="success-note">
             <strong>Amazing news!</strong> Thanks to generous donors, Ronnie's heartworm treatment has been fully funded! Your compassion made this possible.
         </div>
         
-        <p>But Ronnie is just one of many wonderful dogs who need your help. Every day, shelters face the heartbreaking reality of having to euthanize loving, deserving dogs like Ronnie simply due to lack of space and resources.</p>
+        <p>But Ronnie's story doesn't end here - it's just beginning. His journey represents hope for thousands of other dogs waiting in shelters.</p>
         
-        <p><strong>You can change that story and become a hero in a dog's life.</strong></p>
+        <div class="urgent-note">
+            <strong>Time is running out for dogs just like Ronnie.</strong> Right now, in shelters across America, thousands of perfect dogs are watching days pass by, not knowing if their future holds a loving home or euthanasia.
+        </div>
         
+        <p>Every single day, wonderful dogs with loyal hearts and loving spirits face euthanasia simply because shelters run out of space and resources. This is the reality that motivated us to create the Ronnie Legacy Fund.</p>
+        
+        <p><strong>Your donation today can literally save a life tomorrow.</strong></p>
+        
+        <h3>Your Donation Creates Second Chances</h3>
         <ol class="steps">
-            <li>Click the "Donate Now" button below</li>
+            <li>Click the "Become Their Hero Today" button below</li>
             <li>Fill in your payment details</li>
             <li><span class="highlight">IMPORTANT:</span> In the "Note" field, type: <span class="highlight">"Ronnie's Legacy Fund"</span></li>
         </ol>
@@ -212,48 +393,154 @@
             Note: Ronnie's Legacy Fund
         </div>
         
-        <p><strong>Your donation will help save dogs who, like Ronnie, deserve a second chance at love and happiness.</strong></p>
-        
-        <a href="https://donate.stripe.com/8wM02Ug2ufLO6nm3cc" class="donation-button">Become a Hero Today</a>
+        <a href="https://donate.stripe.com/8wM02Ug2ufLO6nm3cc" class="main-donation-button">Become Their Hero Today</a>
         
         <div class="tax-info">
             All donations to the Animal Protection League are tax-deductible as it is a registered 501(c)(3) nonprofit organization.
         </div>
     </section>
     
-    <section class="story-section">
-        <h2>Ronnie's Success Story</h2>
-        <p>Ronnie is a beautiful Dogo Argentino rescued by police after a brutal beating. Despite his traumatic past, he approaches everyone with a wagging tail and loving heart. Thanks to your generosity, Ronnie will receive the heartworm treatment he needs!</p>
+    <section class="section">
+        <h2>Meet Dogs Like Ronnie Who Need Heroes Today</h2>
+        <p>These beautiful souls are waiting in shelters right now. Each has their own story, their own personality, and their own dream of finding a forever home. Will you be their hero?</p>
         
-        <p>But Ronnie's journey represents something bigger. Every day, shelters are filled with dogs equally deserving of love and care. Many face euthanasia simply because shelters run out of space and resources.</p>
-        
-        <p><strong>Your donation to the "Ronnie's Legacy Fund" will help other dogs find their second chance.</strong> Whether you donate directly or commission a pet portrait, you're creating a ripple effect of compassion.</p>
-        
-        <div class="action-box">
-            <h3>Two Ways You Can Be a Hero</h3>
-            <div class="action-options">
-                <div class="action-option">
-                    <h4>Donate</h4>
-                    <p>Every dollar makes a difference in a shelter dog's life. Even small donations add up to save lives.</p>
+        <div class="featured-dogs">
+            <div class="dog-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Featured+Dog" alt="Featured dog" class="dog-image">
+                <div class="dog-info">
+                    <h3 class="dog-name">Max</h3>
+                    <span class="dog-days">42 days at shelter</span>
+                    <p>Max is a 3-year-old lab mix who loves to play fetch and cuddle. He was surrendered when his family moved to an apartment that doesn't allow dogs.</p>
+                    <a href="https://www.petfinder.com/search/dogs-for-adoption/us/in/indianapolis/?distance=Anywhere&shelter_id%5B0%5D=IN309" class="action-button">Meet Max</a>
                 </div>
-                <div class="action-option">
-                    <h4>Adopt</h4>
-                    <p>Opening your home to a shelter dog creates space for another dog to be rescued. Visit your local shelter to meet your potential new family member.</p>
+            </div>
+            
+            <div class="dog-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Featured+Dog" alt="Featured dog" class="dog-image">
+                <div class="dog-info">
+                    <h3 class="dog-name">Bella</h3>
+                    <span class="dog-days">63 days at shelter</span>
+                    <p>Bella is a gentle 5-year-old pit mix who adores children and other dogs. She was found as a stray but her sweet temperament shows she was once loved.</p>
+                    <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=IN567&sort%5B0%5D=recently_added" class="action-button">Meet Bella</a>
+                </div>
+            </div>
+            
+            <div class="dog-card">
+                <img src="https://via.placeholder.com/300x200.png?text=Featured+Dog" alt="Featured dog" class="dog-image">
+                <div class="dog-info">
+                    <h3 class="dog-name">Duke</h3>
+                    <span class="dog-days">87 days at shelter</span>
+                    <p>Duke is a senior shepherd mix looking for a quiet home to spend his golden years. He's housebroken, knows commands, and just wants a warm bed.</p>
+                    <a href="https://www.petfinder.com/search/dogs-for-adoption/us/in/indianapolis/?distance=Anywhere&shelter_id%5B0%5D=IN309" class="action-button">Meet Duke</a>
                 </div>
             </div>
         </div>
+    </section>
+    
+    <section class="section">
+        <h2>Where Your Support Makes a Difference</h2>
+        <p>These dedicated shelters work tirelessly to save as many lives as possible. Your donations directly support their life-saving work.</p>
+        
+        <div class="shelters">
+            <div class="shelter-card">
+                <h3>Animal Protection League</h3>
+                <p>Anderson, Indiana</p>
+                <p><strong>Ronnie's rescuers who gave him a second chance</strong></p>
+                <p>The Animal Protection League is committed to providing shelter, medical care, and hope to abandoned and neglected animals in their community.</p>
+                <div style="text-align: center;">
+                    <a href="https://www.petfinder.com/search/dogs-for-adoption/us/in/indianapolis/?distance=Anywhere&shelter_id%5B0%5D=IN309" class="action-button">See Adoptable Dogs</a>
+                    <a href="#" class="action-button secondary-button">Donate Directly</a>
+                </div>
+            </div>
+            
+            <div class="shelter-card">
+                <h3>Fulton County Animal Center</h3>
+                <p>Rochester, Indiana</p>
+                <p><strong>Dedicated to saving lives in our community</strong></p>
+                <p>The Fulton County Animal Center works diligently to rescue, rehabilitate, and rehome animals in need, creating a compassionate community for all creatures.</p>
+                <div style="text-align: center;">
+                    <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=IN567&sort%5B0%5D=recently_added" class="action-button">See Adoptable Dogs</a>
+                    <a href="https://www.fultoncoanimalcenter.org/donate" class="action-button secondary-button">Donate Directly</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2>Three Ways You Can Be Their Hero</h2>
+        <p>Every action, big or small, can change a life forever. Here's how you can help:</p>
+        
+        <div class="help-options">
+            <div class="help-option">
+                <div class="help-icon">💰</div>
+                <h3>Donate</h3>
+                <p>Every dollar provides food, medicine, and time for a dog waiting for their forever home. Your gift literally buys them more days to find love.</p>
+                <a href="https://donate.stripe.com/8wM02Ug2ufLO6nm3cc" class="action-button">Donate Now</a>
+            </div>
+            
+            <div class="help-option">
+                <div class="help-icon">🏠</div>
+                <h3>Foster</h3>
+                <p>Open your home temporarily to help a shelter dog prepare for adoption while creating space for more rescues. Fostering saves two lives at once!</p>
+                <a href="https://www.petfinder.com/search/dogs-for-adoption/us/in/indianapolis/?distance=Anywhere&shelter_id%5B0%5D=IN309" class="action-button">Learn About Fostering</a>
+            </div>
+            
+            <div class="help-option">
+                <div class="help-icon">❤️</div>
+                <h3>Adopt</h3>
+                <p>Give a permanent loving home to a shelter dog, allowing the rescue cycle to continue. Adoption doesn't just change their life - it will change yours too.</p>
+                <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=IN567&sort%5B0%5D=recently_added" class="action-button">Find Your New Friend</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="memorial-section">
+        <h2>In Memory of Those Who Never Made It Out</h2>
+        <p>We honor the countless dogs who ran out of time before finding their forever homes. Their stories fuel our mission to create a world where every dog gets the chance they deserve.</p>
+        
+        <div class="memorial-dogs">
+            <div class="memorial-dog">
+                <img src="https://via.placeholder.com/150x150.png?text=Memorial" alt="Memorial dog" class="memorial-img">
+                <h3>Charlie</h3>
+                <p>A gentle giant with soulful eyes who loved belly rubs. Charlie waited 4 months for a home that never came.</p>
+            </div>
+            
+            <div class="memorial-dog">
+                <img src="https://via.placeholder.com/150x150.png?text=Memorial" alt="Memorial dog" class="memorial-img">
+                <h3>Luna</h3>
+                <p>A playful young shepherd mix who mastered every trick she was taught. Luna's time ran out after 107 days at the shelter.</p>
+            </div>
+        </div>
+        
+        <blockquote>
+            "Every dog we lose takes a piece of our hearts. But they also strengthen our resolve to fight harder for those still waiting. That's the legacy we want to create in their memory."
+            <br>— Shelter Volunteer
+        </blockquote>
+    </section>
+    
+    <section class="portrait-section">
+        <h2>Commission a Pet Portrait – Another Way to Help</h2>
+        <p>All proceeds from pet portrait commissions support both shelters' rescue efforts. Commemorate your own beloved pet while helping save others.</p>
+        
+        <div class="portrait-gallery">
+            <img src="https://via.placeholder.com/150x150.png?text=Portrait" alt="Pet portrait sample" class="portrait-sample">
+            <img src="https://via.placeholder.com/150x150.png?text=Portrait" alt="Pet portrait sample" class="portrait-sample">
+            <img src="https://via.placeholder.com/150x150.png?text=Portrait" alt="Pet portrait sample" class="portrait-sample">
+            <img src="https://via.placeholder.com/150x150.png?text=Portrait" alt="Pet portrait sample" class="portrait-sample">
+        </div>
+        
+        <p>View full portfolio: <a href="https://photos.app.goo.gl/jiq2LHm5sANH4F146">Previous Portrait Work</a></p>
         
         <div class="contact-info">
-            <h3>Commission a Pet Portrait to Help More Dogs</h3>
-            <p>All proceeds from pet portraits continue to support the Animal Protection League's rescue efforts.</p>
-            <p><a href="https://photos.app.goo.gl/jiq2LHm5sANH4F146">See previous portrait work here</a></p>
+            <h3>Contact for Commission Inquiries</h3>
             <p><strong>Email:</strong> <a href="mailto:losgarabatosdefer@gmail.com">losgarabatosdefer@gmail.com</a></p>
             <p><strong>Instagram:</strong> @los_garabatos_de_fer</p>
         </div>
     </section>
     
     <footer>
-        <p>Thank you for being a hero in a dog's life. Together, we're creating Ronnie's legacy of compassion and second chances. ❤️</p>
+        <p>Together, we're creating Ronnie's legacy of compassion and second chances. Every dog deserves what Ronnie found – a chance at life and love. ❤️</p>
+        <p>The Ronnie Legacy Fund supports the Animal Protection League and Fulton County Animal Center.</p>
     </footer>
 </body>
 </html>
