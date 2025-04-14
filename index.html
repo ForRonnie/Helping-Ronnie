@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Ronnie Legacy: Saving Lives in Shelters Nationwide</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css" />
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -154,57 +156,6 @@
             font-size: 18px;
         }
         
-        .featured-dogs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-        
-        .dog-card {
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .dog-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .dog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .dog-info {
-            padding: 15px;
-        }
-        
-        .dog-name {
-            color: #ca5310;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 0 10px 0;
-        }
-        
-        .dog-days {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
         .shelters {
             display: flex;
             flex-wrap: wrap;
@@ -252,41 +203,85 @@
             margin-bottom: 15px;
         }
         
-        .memorial-section {
-            background-color: #f5f5f5;
-            padding: 30px;
+        /* Memorial Carousel Section */
+        .memorial-carousel-section {
+            background-color: #333;
+            padding: 40px 20px;
             border-radius: 10px;
-            margin: 30px 0;
+            margin: 40px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .memorial-carousel-section h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .memorial-carousel-section p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .swiper-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 30px;
+        }
+        
+        .swiper-slide {
             text-align: center;
         }
         
-        .memorial-dogs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-        
-        .memorial-dog {
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            padding: 15px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .memorial-img {
-            width: 120px;
-            height: 120px;
+        .carousel-image {
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
             object-fit: cover;
-            border-radius: 60px;
-            margin: 0 auto 15px;
-            display: block;
-            filter: grayscale(100%);
-            border: 3px solid #7f8c8d;
+            border-radius: 8px;
+            filter: grayscale(80%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .swiper-slide-active .carousel-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        
+        .swiper-lazy-preloader {
+            border: 4px solid #ca5310;
+            border-top-color: transparent;
+        }
+        
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.5;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #ca5310;
+            opacity: 1;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #ca5310;
+        }
+        
+        .memorial-quote {
+            font-style: italic;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .portrait-section {
@@ -348,12 +343,16 @@
         }
         
         @media (max-width: 768px) {
-            .shelters, .help-options, .memorial-dogs, .featured-dogs {
+            .shelters, .help-options {
                 flex-direction: column;
             }
             
-            .dog-card, .shelter-card, .help-option, .memorial-dog {
+            .shelter-card, .help-option {
                 min-width: 100%;
+            }
+            
+            .carousel-image {
+                height: 250px;
             }
         }
     </style>
@@ -399,8 +398,6 @@
             All donations to the Animal Protection League are tax-deductible as it is a registered 501(c)(3) nonprofit organization.
         </div>
     </section>
-    
-    <!-- Removed Featured Dogs Section -->
     
     <section class="section">
         <h2>Where Your Support Makes a Difference</h2>
@@ -459,34 +456,106 @@
         </div>
     </section>
     
-    <section class="memorial-section">
-        <h2>In Memory of Those Who Never Made It Out</h2>
-        <p>We honor a few of the thousands of wonderful dogs who ran out of time before finding their forever homes. Their stories fuel our mission to create a world where every dog gets the chance they deserve.</p>
+    <!-- Memorial Carousel Section - Replacing the Memorial Section -->
+    <section class="memorial-carousel-section">
+        <h2>Faces That Never Found Their Way Home</h2>
+        <p>Each of these souls waited, hoped, and dreamed of a family that never came. Their eyes held the same love and loyalty as any beloved pet, but time ran out before they could know the warmth of a forever home. Their silent stories remind us why our mission matters.</p>
         
-        <div class="memorial-dogs">
-            <div class="memorial-dog">
-                <img src="grady.jpg" alt="Grady - memorial" class="memorial-img">
-                <h3>Grady</h3>
-                <p>A 3-year-old hugger who retrieved toys with gentle care. Grady just needed a quiet home and a loving adopter who never made it to the shelter before euthanasia won the tragic race.</p>
+        <!-- Swiper Carousel -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Each slide contains a single image that loads only when needed -->
+                <div class="swiper-slide">
+                    <img data-src="euthanized (1).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (2).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (3).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (4).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (5).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (6).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (7).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (8).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (9).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (10).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (11).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (12).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (13).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (14).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (15).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (16).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (17).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (18).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (19).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="euthanized (20).jpg" class="swiper-lazy carousel-image" alt="Memorial dog">
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
             </div>
             
-            <div class="memorial-dog">
-                <img src="Betty.jpg" alt="Betty - memorial" class="memorial-img">
-                <h3>Betty</h3>
-                <p>Dumped at a city dog park at just one year old. Betty's wiggly, eager-to-learn spirit waited for a quiet home and loving adopter who never arrived before her time ran out.</p>
-            </div>
-            
-            <div class="memorial-dog">
-                <img src="kaylee.jpg" alt="Kaylee - memorial" class="memorial-img">
-                <h3>Kaylee</h3>
-                <p>Found as a stray, this playful 2-year-old loved one-on-one attention. Kaylee just needed a quiet home away from the chaotic shelter, but euthanasia claimed her before that loving adopter appeared.</p>
-            </div>
+            <!-- Navigation and pagination -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
         
-        <blockquote>
-            "Every dog we lose takes a piece of our hearts. But they also strengthen our resolve to fight harder for those still waiting. That's the legacy we want to create in their memory."
-            <br>— Shelter Volunteer
-        </blockquote>
+        <p class="memorial-quote">
+            "They died with the greatest sin of all... being unwanted. Let their memory fuel our resolve to create a world where no loving soul goes without a home."
+        </p>
     </section>
     
     <section class="portrait-section">
@@ -518,5 +587,56 @@
         <p>Together, we're creating Ronnie's legacy of compassion and second chances. Every dog deserves what Ronnie found – a chance at life and love. ❤️</p>
         <p>The Ronnie Legacy Fund supports the Animal Protection League and Fulton County Animal Center.</p>
     </footer>
+    
+    <!-- Swiper JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize the carousel when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.swiper-container', {
+                // Enable lazy loading
+                lazy: {
+                    loadPrevNext: true, // Load images in prev/next slides
+                    loadPrevNextAmount: 2 // Load 2 images ahead and behind
+                },
+                
+                // Show 1 slide at a time
+                slidesPerView: 1,
+                
+                // Add space between slides
+                spaceBetween: 30,
+                
+                // Enable grabbing and dragging
+                grabCursor: true,
+                
+                // Transition effect
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                
+                // Add pagination bullets
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                
+                // Add navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                
+                // Auto play slides
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false
+                },
+                
+                // Loop through slides
+                loop: true
+            });
+        });
+    </script>
 </body>
 </html>
