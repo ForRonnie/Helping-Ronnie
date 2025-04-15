@@ -261,27 +261,13 @@
             border-top-color: transparent;
         }
         
-        .swiper-pagination-bullet {
-            background: white;
-            opacity: 0.5;
-        }
-        
-        .swiper-pagination-bullet-active {
-            background: #ca5310;
-            opacity: 1;
-        }
-        
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #ca5310;
-        }
-        
         .memorial-quote {
             font-style: italic;
             font-size: 18px;
             max-width: 700px;
             margin: 30px auto 0;
             color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
         }
         
         .portrait-section {
@@ -546,15 +532,10 @@
                     <div class="swiper-lazy-preloader"></div>
                 </div>
             </div>
-            
-            <!-- Navigation and pagination -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
         </div>
         
         <p class="memorial-quote">
-            "They died with the greatest sin of all... being unwanted. Let their memory fuel our resolve to create a world where no loving soul goes without a home."
+            "They left this world alone, behind shelter bars, for no crime but being born without a home waiting. Each had the same capacity for love as the cherished pet by your side. Their silent departure reminds us that all creatures share one breath, one heartbeat in creation's symphony. When we turn away, we diminish not just their light, but our own. In their memory, let compassion move from feeling to action."
         </p>
     </section>
     
@@ -606,30 +587,19 @@
                 // Add space between slides
                 spaceBetween: 30,
                 
-                // Enable grabbing and dragging
-                grabCursor: true,
-                
                 // Transition effect
                 effect: 'fade',
                 fadeEffect: {
                     crossFade: true
                 },
                 
-                // Add pagination bullets
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
-                },
+                // Hide navigation buttons and pagination
+                navigation: false,
+                pagination: false,
                 
-                // Add navigation arrows
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                
-                // Auto play slides
+                // Auto play slides faster
                 autoplay: {
-                    delay: 4000,
+                    delay: 1500, // 1.5 seconds between slides
                     disableOnInteraction: false
                 },
                 
